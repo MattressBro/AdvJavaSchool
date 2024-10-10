@@ -5,7 +5,24 @@ public class CheckingAccount extends BankAccount {
         super();
         this.intRate=3;
     }
+    @Override
+    public void withdrawal(double wit){
+        this.balance -= wit;
+        System.out.println(wit+" was withdrawn from your account.");
+    }
     public void processWithdrawal(){
-        System.out.println();
+        if(this.getBalance() <0){
+            System.out.println("WARNING: Overdraft Penalization");
+            System.out.println("Account balance: "+this.getBalance());
+            System.out.println("  Overdraft fee: $30");
+            double newBal = getBalance();
+            newBal -=30;
+            this.setBalance(newBal);
+            System.out.println("Account balance: "+this.getBalance());
+        }
+    }
+    public void displayAccount(){
+        accountSummary();
+        System.out.println("Interest Rate:"+intRate);
     }
 }

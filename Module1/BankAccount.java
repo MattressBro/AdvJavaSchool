@@ -40,6 +40,9 @@ public class BankAccount {
     public double getBalance(){
         return this.balance;
     }
+    public void setBalance(double bal){
+        this.balance=bal;
+    }
     public void accountSummary(){
         System.out.println("-----Account Summary-----");
         System.out.println("First Name: "+this.firstName);
