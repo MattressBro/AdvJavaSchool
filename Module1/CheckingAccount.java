@@ -9,6 +9,7 @@ public class CheckingAccount extends BankAccount {
     public void withdrawal(double wit){
         this.balance -= wit;
         System.out.println(wit+" was withdrawn from your account.");
+        processWithdrawal();
     }
     public void processWithdrawal(){
         if(this.getBalance() <0){

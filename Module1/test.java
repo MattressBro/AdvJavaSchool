@@ -12,7 +12,10 @@ public class test {
         check.setLastName("Doe");
         check.setAccountID(5589467);
         check.accountSummary();
+        check.displayAccount();
         bank.withdrawal(40);
         bank.accountSummary();
+        check.withdrawal(40);
+        check.displayAccount();
     }
 }
