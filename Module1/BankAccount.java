@@ -13,10 +13,12 @@ public class BankAccount {
     }
     public void deposit(double dep){
         this.balance += dep;
+        System.out.println("Account ID: "+this.accountID);
         System.out.println(dep+" was added to your account.");
     }
     public void withdrawal(double wit){
         this.balance -= wit;
+        System.out.println("Account ID: "+this.accountID);
         System.out.println(wit+" was withdrawn from your account.");
     }
     public String getFirstName(){
