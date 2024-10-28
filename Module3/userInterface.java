@@ -14,7 +14,7 @@ public class userInterface extends JFrame {
     private JMenu menu;
     private JMenuItem m1, m2, m3, m4;
     private JTextField field;
-
+    private String colors[] = {"#006600","#008000","#00ff00","#80ff80","#b3ffb3"};
     public userInterface(){
         this.setLayout(new BorderLayout()); 
         bar = new JMenuBar();
@@ -31,6 +31,12 @@ public class userInterface extends JFrame {
         this.setJMenuBar(bar);
         field = new JTextField("");
         this.add(field);
+        Random ran = new Random();
+        int randomInt = ran.nextInt(colors.length);
+        String colorChoice = colors[randomInt];
+        Color bc = Color.decode(colorChoice);
+        getContentPane().setBackground(bc);
+        m3.setText("Changed background: " + colorChoice);
         m1.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent E){
@@ -43,12 +49,29 @@ public class userInterface extends JFrame {
         m2.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent E){
-                try(FileWriter w = new FileWriter("log.txt", true)){
+                try(FileWriter w = new FileWriter("Module3/log.txt", true)){
                     w.write(field.getText()+"\n");
                     JOptionPane.showMessageDialog(userInterface.this, "Text saved to log.txt");
                 } catch (IOException ex) {
                     JOptionPane.showMessageDialog(userInterface.this, "Error saving to file: " + ex.getMessage());
                 }
+            }
+        });
+        m3.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent E){
+                Random ran = new Random();
+                int randomInt = ran.nextInt(colors.length);
+                String colorChoice = colors[randomInt];
+                Color bc = Color.decode(colorChoice);
+                field.setBackground(bc);
+                m3.setText("Changed to Hue: " + colorChoice);
+            }
+        });
+        m4.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.exit(0);
             }
         });
         setTitle("Module 3 Critical Thinking");
