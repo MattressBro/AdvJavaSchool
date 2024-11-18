@@ -1,4 +1,4 @@
-package Module4.Module5;
+package Module5;
 import java.util.Scanner;
 
 public class recursion {
