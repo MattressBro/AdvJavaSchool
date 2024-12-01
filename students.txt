@@ -1,3 +1,9 @@
-Name: braden
-Address: 12
+abby
+Address: 123
+GPA: 4.0
+braden
+Address: 123
+GPA: 4.0
+joe
+Address: 123
 GPA: 4.0

@@ -1,6 +1,8 @@
 package Final;
 import java.util.*;
 import java.io.*;
+import java.util.Collections;
+import java.util.Comparator;
 
 public class finalProject {
     static class Student{
@@ -18,7 +20,7 @@ public class finalProject {
         } 
         @Override
         public String toString(){
-            return "Name: "+name+"\nAddress: "+address+"\nGPA: "+gpa;
+            return name+"\nAddress: "+address+"\nGPA: "+gpa;
         }
     }
     public static void main(String[] args){
@@ -31,6 +33,11 @@ public class finalProject {
         int input=0;
         while(input != 2){
             System.out.print("Make a selection(1-2): ");
+            while(!s.hasNextInt()){
+                System.out.println("Invalid input. Enter 1 or 2.");
+                s.nextLine();
+                System.out.print("Make a selection(1-2): ");
+            }
             input=s.nextInt();
             s.nextLine();
             switch(input){
@@ -44,7 +51,8 @@ public class finalProject {
                         System.out.println("No students to output. Exiting program.");
                     }
                     else{
-                        System.out.println("Writing to file and exiting.")
+                        System.out.println("Writing to file and exiting.");
+                        sortStudents(studentList);
                         toFile(studentList);
                         break;
                     }
@@ -77,12 +85,20 @@ public class finalProject {
         return new Student(name, address, gpa);
     }
     public static void toFile(LinkedList<Student> studentList){
-        try(PrintWriter writer = new PrintWriter(new FileWriter("students.txt"))){
+        try(PrintWriter writer = new PrintWriter(new FileWriter("Final/students.txt"))){
             for(Student student : studentList){
                 writer.println(student.toString());
             }
         }catch (IOException e){
             System.out.println("Error occured writing to file."+e.getMessage());
         }
+    }
+    public static void sortStudents(LinkedList<Student> studentList){
+        Collections.sort(studentList, new Comparator<Student>() {
+            @Override
+            public int compare(Student s1, Student s2){
+                return s1.getName().compareToIgnoreCase(s2.getName());
+            }
+        });        
     }
 }
